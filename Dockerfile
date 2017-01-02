@@ -41,6 +41,7 @@ RUN \
   chmod +x ./start.sh
 
 VOLUME ["/ampdata"]
+VOLUME ["/minecraft"]
 
 USER AMP
 

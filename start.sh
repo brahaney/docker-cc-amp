@@ -70,7 +70,11 @@ done
 
 if [ -z ${LICENCE+x} ]; then echo "Error: A licence for AMP from cubecoders.com is required and must be specified as --licence_key xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"; exit 1; fi
 
-if [ ! -d ~/.ampdata/instances/$INSTANCE_NAME/ ]; then
+if [ ! -x ~/.ampdata/instances/$INSTANCE_NAME/AMP_Linux_x86_64 ]; then
+    echo "making directories"
+    mkdir -p ~/.ampdata/instances/$INSTANCE_NAME/Minecraft
+    echo "Linking Minecraft volume"
+    ln -s /minecraft /home/AMP/.ampdata/instances/$INSTANCE_NAME/Minecraft
     echo "Creating module instance: ./ampinstmgr CreateInstance $MODULE $INSTANCE_NAME $HOST $PORT $LICENCE $PASSWORD +Core.Login.Username $USERNAME ${EXTRAS[@]}"
     ./ampinstmgr CreateInstance $MODULE $INSTANCE_NAME $HOST $PORT $LICENCE $PASSWORD +Core.Login.Username $USERNAME ${EXTRAS[@]}
     echo "Starting instance: $INSTANCE_NAME"
