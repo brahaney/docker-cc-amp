@@ -5,7 +5,7 @@
 #
 
 # Pull base image.
-FROM debian
+FROM debian:jessie-backports
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
