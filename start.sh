@@ -76,14 +76,14 @@ if [ ! -x ~/.ampdata/instances/$INSTANCE_NAME/AMP_Linux_x86_64 ]; then
         mkdir -p ~/.ampdata/instances/$INSTANCE_NAME
     fi
     echo "Linking Minecraft volume"
-    ln -s /minecraft /home/AMP/.ampdata/instances/$INSTANCE_NAME/Minecraft
+    ln -sf /minecraft /home/AMP/.ampdata/instances/$INSTANCE_NAME/Minecraft
     echo "Creating module instance: ./ampinstmgr CreateInstance $MODULE $INSTANCE_NAME $HOST $PORT $LICENCE $PASSWORD +Core.Login.Username $USERNAME ${EXTRAS[@]}"
     ./ampinstmgr CreateInstance $MODULE $INSTANCE_NAME $HOST $PORT $LICENCE $PASSWORD +Core.Login.Username $USERNAME ${EXTRAS[@]}
     echo "Starting instance: $INSTANCE_NAME"
     (cd /ampdata/instances/$INSTANCE_NAME && exec ./AMP_Linux_x86_64)
 else
     echo "Linking Minecraft volume"
-    ln -s /minecraft /home/AMP/.ampdata/instances/$INSTANCE_NAME/Minecraft
+    ln -sf /minecraft /home/AMP/.ampdata/instances/$INSTANCE_NAME/Minecraft
     echo "Starting instance: $INSTANCE_NAME"
     (cd /ampdata/instances/$INSTANCE_NAME && ./AMP_Linux_x86_64 +Core.AMP.LicenceKey $LICENCE && exec ./AMP_Linux_x86_64)
 fi
